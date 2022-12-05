@@ -1,0 +1,28 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:51289/app-db
+    username: root
+    password: secret
+    hikari:
+      max-lifetime: 300000 # 5 min in millis
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+  flyway:
+    enabled: true
+    baseline-on-migrate: true
+    placeholder-replacement: false
+    url: ${spring.datasource.url}
+    user: ${spring.datasource.username}
+    password: ${spring.datasource.password}
+springdoc:
+  packages-to-scan:
+    - "com.rw.test.tastefulapp.api"
+  swagger-ui:
+    use-root-path: true
+    path: "/swagger-ui.html"
